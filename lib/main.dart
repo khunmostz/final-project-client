@@ -1,6 +1,7 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:client/pages/beforePage.dart';
 import 'package:client/pages/signinPage.dart';
+import 'package:client/pages/signupPage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/signin': (context) => SignInPage(),
+        '/signup': (context) => SignUpPage(),
       },
     );
   }

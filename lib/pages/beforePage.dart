@@ -1,4 +1,5 @@
 import 'package:client/constants.dart';
+import 'package:client/pages/signinPage.dart';
 import 'package:client/widgets/button.dart';
 import 'package:client/widgets/textsp.dart';
 import 'package:flutter/gestures.dart';
@@ -35,13 +36,12 @@ class _BeforePageState extends State<BeforePage>
         children: [
           Expanded(
             flex: 2,
-            child: Lottie.network(
-              'https://assets8.lottiefiles.com/packages/lf20_q3mlcaak.json',
+            child: Lottie.asset(
+              'assets/lotties/46864-lovely-cats.json',
               controller: _controller,
               onLoaded: (composition) {
-                _controller.forward();
+                _controller.repeat();
               },
-              repeat: false,
             ),
           ),
           Expanded(
@@ -58,12 +58,16 @@ class _BeforePageState extends State<BeforePage>
                           fontSize: 26, fontWeight: FontWeight.w800),
                     ),
                     SizedBox(height: kDefaultPadding),
-                    EvButton("Login", kBackgroudColor),
+                    EvButton("Sign in", kBackgroudColor, () {
+                      Navigator.pushNamed(context, '/signin');
+                    }),
                     SizedBox(height: kDefaultPadding),
-                    EvButton("Register", kBackgroudColor),
+                    EvButton("Sign up", kBackgroudColor, () {
+                      Navigator.pushNamed(context, '/signup');
+                    }),
                     SizedBox(height: kDefaultPadding),
                     CnTextSp(context,
-                        text1: "Already have an account?", text2: "Sign in"),
+                        text1: "Already have an account ? ", text2: "Sign in"),
                   ],
                 ),
               ),

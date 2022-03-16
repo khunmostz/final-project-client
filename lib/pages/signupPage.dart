@@ -1,19 +1,19 @@
 import 'package:client/constants.dart';
 import 'package:client/widgets/button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   bool _passwordVisible = false;
-  @override
+  List typeUsers = ['Doctor', 'Users', 'Admin'];
+  String? value;
   void initState() {
     // TODO: implement initState
     super.initState();
@@ -60,6 +60,25 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                 ),
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: BorderSide(color: kBackgroudColor),
+                    ),
+                    prefixIcon: Icon(Icons.person, color: kBackgroudColor),
+                    labelText: 'Fullname',
+                    labelStyle: TextStyle(
+                      color: kBackgroudColor,
+                    ),
+                    hintText: 'Enter your name',
+                  ),
+                ),
+                SizedBox(height: kDefaultPadding + 10),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
@@ -110,22 +129,41 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: kDefaultPadding / 2),
-                GestureDetector(
-                  onTap: () {},
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forget password ?',
-                      style: GoogleFonts.poppins(
-                        color: Colors.grey.shade400,
-                        fontSize: 14,
-                      ),
+                SizedBox(height: kDefaultPadding + 10),
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: kDefaultPadding,
+                    vertical: kDefaultPadding / 4,
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey.shade400,
+                      width: 1,
                     ),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: DropdownButton(
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: kBackgroudColor,
+                    ),
+                    isExpanded: true,
+                    hint: Text('Select type user'),
+                    value: value,
+                    onChanged: (value) => setState(() {
+                      this.value = value as String?;
+                    }),
+                    items: typeUsers.map((value) {
+                      return DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      );
+                    }).toList(),
                   ),
                 ),
                 SizedBox(height: kDefaultPadding / 2),
-                EvButton('Login', kBackgroudColor, () {}),
+                SizedBox(height: kDefaultPadding / 2),
+                EvButton('Sign Up', kBackgroudColor, () {}),
                 SizedBox(height: kDefaultPadding / 2),
                 Align(
                   alignment: Alignment.center,
