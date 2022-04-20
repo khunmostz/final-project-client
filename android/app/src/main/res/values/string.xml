@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resource>
+    <string name="app_name">Petcare</string>
+    <string name="facebook_app_id">689788425498212</string>
+    <string name="fb_login_protocol_scheme">fb689788425498212</string>
+    <string name="facebook_client_token">a842ed59fcec7537582c02ee9c902dd9</string>
+</resource>
