@@ -14,11 +14,12 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _fullNameController = TextEditingController();
 
-  bool _passwordVisible = false;
+  bool _passwordVisible = true;
   List typeUsers = ['Doctor', 'Users', 'Admin'];
   String? value;
   void initState() {

@@ -29,21 +29,22 @@ class _SignInPageState extends State<SignInPage> {
     try {
       final facebookLoginResult = await FacebookAuth.instance.login();
       final userData = await FacebookAuth.instance.getUserData();
-
+      // print(userData['email'] + "23131231231231231231234124");
       final facebookAuthCredential = FacebookAuthProvider.credential(
           facebookLoginResult.accessToken!.token);
 
       await FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
+
       await FirebaseFirestore.instance.collection('users').add({
         'email': userData['email'],
         'name': userData['name'],
         'imageUrl': userData['picture']['data']['url'],
       });
 
+      print("Add Users To Database Successful");
+
       Navigator.of(context)
           .pushNamedAndRemoveUntil('/content', (route) => false);
-
-      print(userData['name']);
     } on FirebaseAuthException catch (e) {
       print(e);
     }
@@ -212,7 +213,7 @@ class _SignInPageState extends State<SignInPage> {
                           borderRadius: BorderRadius.all(Radius.circular(5)),
                         ),
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             _logInWithFacebook();
 
                             setState(() {
